@@ -4,7 +4,7 @@ expert system
 our rules 
 ======================================================================
 if electricity on
-and charging lamp off \n
+and charging lamp off 
     then charger problem            {cf=90}
 
 if no battery exist 
