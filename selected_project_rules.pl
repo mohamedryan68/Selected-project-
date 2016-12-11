@@ -20,19 +20,19 @@ rule(5,
      rhs( av(not_charged,yes),90) ).
 
 rule(6,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),av(labtop_fall_down,yes)] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(labtop_fall_down,yes)] ),
      rhs( av(problem,ram),80) ).
 
 rule(7,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),av(bios_screen,yes)] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(bios_screen,yes)] ),
      rhs( av(problem,ram),100) ).
 
 rule(8,
-     lhs( [av(desktop_start,yes),av(computer_turn_on,yes),av(labtop_fall_down, yes),av(bad_resoluation, yes) ] ),
+     lhs( [av(computer_turn_on,yes),av(desktop_start,yes),av(labtop_fall_down, yes),av(bad_resoluation, yes) ] ),
      rhs( av(problem, displaycard), 80) ).
 
 rule(9,
-     lhs( [av(desktop_start,yes),av(computer_turn_on,yes),av(labtop_fall_down, yes),av(red_lines, yes) ] ),
+     lhs( [av(computer_turn_on,yes),av(desktop_start,yes),av(labtop_fall_down, yes),av(red_lines, yes) ] ),
      rhs( av(problem, displayflat), 90) ).
 
 rule(10,
@@ -45,20 +45,20 @@ rule(11,
 
 
 rule(12,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),not(av(hear_fan_sound,yes))] ) ,
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),not(av(hear_fan_sound,yes))] ) ,
      rhs( av(problem, cpufan), 90)).
 
 
 rule(13,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),av(uncom_sound, yes),av(aircondition, yes) ] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(uncom_sound, yes),av(aircondition, yes) ] ),
      rhs( av(problem, cpufan), 90) ).
 
 rule(14,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),av(high_temp,yes)]),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(high_temp,yes)]),
      rhs( av(aircondition,yes), 100) ).
 
 rule(15,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),av(windows_do_con_op, yes),av(flash_screen, yes) ] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(windows_do_con_op, yes),av(flash_screen, yes) ] ),
      rhs( av(problem, os), 100) ).
 
 rule(16,
@@ -66,19 +66,19 @@ rule(16,
      rhs( av(windows_do_con_op,yes), 100)).
 
 rule(17,
-     lhs( [av(desktop_start,yes),av(computer_turn_on,yes),av(windows_op_disk_restart, yes) ] ),
+     lhs( [av(computer_turn_on,yes),av(desktop_start,yes),av(windows_op_disk_restart, yes) ] ),
      rhs( av(problem, os), 100) ).
 
 rule(18,
-     lhs( [av(desktop_start,yes),av(computer_turn_on,yes),av(windows_in_deadlock, yes) ] ),
+     lhs( [av(computer_turn_on,yes),av(desktop_start,yes),av(windows_in_deadlock, yes) ] ),
      rhs( av(problem, os), 100) ).
 
 rule(19,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),av(blue_page, yes) ] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(blue_page, yes) ] ),
      rhs( av(problem, os), 100) ).
 
 rule(20,
-     lhs( [not(av(desktop_start,yes)),av(computer_turn_on,yes),av(can_not_load_os, yes) ] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(can_not_load_os, yes) ] ),
      rhs( av(problem, harddrive), 90) ).
 
 
