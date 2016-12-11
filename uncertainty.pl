@@ -22,6 +22,37 @@ findgoal(not(Goal), NCF) :-
 findgoal( av(Attr, Val), CF ) :-
 	fact( av(Attr, Val), CF),
 	!.
+problem :- solve(problem,_).
+
+solve(A, V) :-
+	abolish(fact,2),
+	dynamic(fact/2),
+	abolish(asked,1),
+	dynamic(asked/1),
+	findgoal(av(A, V), CF),
+	write('The answer is '),write(V),write(' with CF='),write(CF),nl.
+
+query_user(Attr, Prompt) :-
+	write(Prompt),nl,
+	read(Val),
+	read(CF),
+	check(Val,NCFI,CF , NVal),
+	asserta(fact(av(Attr,NVal), NCFI)).
+	
+check(Val,CF,Curf,NVal):- Val==yes,
+			  CF is Curf,
+			  NVal = Val;
+			  CF is Curf * -1,
+			  NVal = yes .
+
+findgoal(not(Goal), NCF) :-
+	findgoal(Goal, CF),
+	NCF is - CF,
+	!.
+
+findgoal( av(Attr, Val), CF ) :-
+	fact( av(Attr, Val), CF),
+	!.
 
 findgoal(Goal,CF) :-
 	can_ask(Goal),
@@ -71,6 +102,53 @@ update(Goal, NewCF, CF) :-
 	fact(Goal, OldCF),
 	combine(NewCF, OldCF, CF),
 	retract( fact(Goal, OldCF) ),
+	asserta( fact(Goal, CF) ),
+	!.
+
+update(Goal, CF, CF) :-
+	asserta( fact(Goal, CF) ).
+	
+adjust(CF1, CF2, CF) :-
+	X is CF1 * CF2 / 100,
+	int_round(X, CF).
+
+combine(CF1, CF2, CF) :-
+	CF1 >= 0,
+	CF2 >= 0,
+	X is CF1 + CF2*(100 - CF1)/100,
+	int_round(X, CF).
+
+combine(CF1, CF2, CF) :-
+	CF1 < 0,
+	CF2 < 0,
+	X is - ( -CF1 -CF2 * (100 + CF1)/100),
+	int_round(X, CF).
+
+combine(CF1, CF2, CF) :-
+	(CF1 < 0; CF2 < 0),
+	(CF1 > 0; CF2 > 0),
+	abs_minimum(CF1, CF2, MCF),
+	X is 100 * (CF1 + CF2) / (100 - MCF),
+	int_round(X, CF).
+	
+abs_minimum(A,B,X) :-
+	absolute(A, AA),
+	absolute(B, BB),
+	minimum(AA,BB,X).
+
+absolute(X, X) :- X >= 0.
+absolute(X, Y) :- X < 0, Y is -X.
+
+minimum(X,Y,X) :- X =< Y,!.
+minimum(X,Y,Y) :- Y =< X.
+
+int_round(X,I) :-
+	X >= 0,
+	I is integer(X + 0.5).
+int_round(X,I) :-
+	X < 0,
+	I is integer(X - 0.5).
+
 	asserta( fact(Goal, CF) ),
 	!.
 
