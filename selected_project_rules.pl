@@ -7,11 +7,11 @@ rule(2,
      rhs( av(electricity_depend, yes), 80) ).
 
 rule(3,
-    lhs( [not(av(computer_turn_on,yes)),av(not_charged,yes)]),
+    lhs( [not(av(computer_turn_on,yes)),not(av(no_battery_exist, yes)),av(not_charged,yes)]),
     rhs( av(problem, battery),90) ).
 
 rule(4,
-     lhs( [not(av(computer_turn_on,yes)),not(av(not_charged,yes)),not(av(power_in_laptop,yes))] ),
+     lhs( [not(av(computer_turn_on,yes)),not(av(no_battery_exist, yes)),not(av(not_charged,yes)),not(av(power_in_laptop,yes))] ),
      rhs( av(problem,battery),90) ).
 
 
