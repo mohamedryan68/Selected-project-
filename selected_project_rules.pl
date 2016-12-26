@@ -11,7 +11,7 @@ rule(3,
     rhs( av(problem, battery),90) ).
 
 rule(4,
-     lhs( [not(av(computer_turn_on,yes)),not(av(no_battery_exist, yes)),not(av(not_charged,yes)),not(av(power_in_laptop,yes))] ),
+     lhs( [not(av(computer_turn_on,yes)),not(av(not_charged,yes)),not(av(power_in_laptop,yes))] ),
      rhs( av(problem,battery),90) ).
 
 
@@ -36,11 +36,11 @@ rule(9,
      rhs( av(problem, displayflat), 90) ).
 
 rule(10,
-     lhs( [av(computer_turn_on,yes),av(hear_os_start, yes),av(black_display, yes) ] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(hear_os_start, yes),av(black_display, yes) ] ),
      rhs( av(problem, displaymode), 90) ).
 
 rule(11,
-     lhs( [av(computer_turn_on,yes),av(hear_os_start, yes),av(labtop_fall_down, yes) ] ),
+     lhs( [av(computer_turn_on,yes),not(av(desktop_start,yes)),av(hear_os_start, yes),av(labtop_fall_down, yes) ] ),
      rhs( av(problem, display), 90) ).
 
 
@@ -102,6 +102,44 @@ rule(22,
      lhs( [not(av(charger,yes)),not(av(computer_turn_on,yes)) ] ),
      rhs( av(problem, powerbutton), 90) ).
 
+rule(26,
+     lhs( [av('you can connect battery if it is charged or buy new one from nearest shop ',recomend)] ),
+     rhs( av(charger,yes), 90) ).
+
+rule(27,
+     lhs( [av('you can work using charger directly and buy new one next time',recomend)] ),
+     rhs( av(battery,yes) , 90) ).
+
+rule(28,
+     lhs( [av( 'try to pick it up clean it and reinsert it again if it does not work buy new one',recomend)] ),
+     rhs( av(ram,yes) , 90) ).
+rule(29,
+     lhs( [ av('change it ' ,recomend )] ),
+     rhs( av(displaycard,yes), 90) ).
+rule(30,
+     lhs([av( 'press from the two sides of the screen lightly or connect to external screen or repair it  ' ,recomend)] ),
+     rhs( av(displayflat,yes), 90) ).
+rule(31,
+     lhs( [ av( 'connect to external screen untill repair it or buy new one ',recomend)] ),
+     rhs( av(display,yes), 90) ).     
+rule(32,
+     lhs( [av('press f5',recomend)] ),
+     rhs( av(displaymode,yes), 90) ).
+rule(33,
+     lhs( [av('you can use cooler or get new one ',recomend)] ),
+     rhs( av(cpufan,yes), 90) ).
+rule(34,
+     lhs( [av('install operating system perfered linux ',recomend)] ),
+     rhs( av(os,yes), 90) ).
+rule(35,
+     lhs( [av( 'boot from flash get your data then get new one or repair it ',recomend)] ),
+     rhs( av(harddrive,yes), 90) ).
+rule(36,
+     lhs( [av('you should repair it ',recomend)] ),
+     rhs( av(powerbutton,yes), 90) ).
+rule(37,
+     lhs( [av('go to specilalist to solve the problem ',recomend)] ),
+     rhs( av(board,yes), 90) ).
 
 askable(computer_turn_on, 'Does the computer turn on  : ').
 askable(desktop_start, 'Does the desktop start : ').
@@ -128,5 +166,3 @@ askable(fall_drink, 'Does drink droped on computer  : ').
 askable(smell_smoke, 'Do you smell smoke : ').
 askable(power_lamp_off, 'Does power lamp is off : ').
 askable(blue_page, 'Do you see bule page : ').
-
-
