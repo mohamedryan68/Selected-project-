@@ -1,6 +1,9 @@
 # Selected-project
 expert system 
 ======================================================================
+this system for computer problem diagnose with recommendation system soluation 
+after diagnose user asked if he/she need recommended soluation or not 
+======================================================================
 our rules 
 ======================================================================
 if computer doesn't turn on
